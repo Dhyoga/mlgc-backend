@@ -1,8 +1,8 @@
 require('dotenv').config();
  
 const Hapi = require('@hapi/hapi');
-const routes = require('./server/routes');
-const loadModel = require('./services/loadModel');
+const routes = require('./src/server/routes');
+const loadModel = require('./src/services/loadModel');
  
 (async () => {
     const server = Hapi.server({
