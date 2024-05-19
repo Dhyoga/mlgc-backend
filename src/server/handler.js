@@ -35,7 +35,7 @@ async function postPredict(request, h) {
       "id": id,
     }
 
-    // await storeData(id, history);
+    await storeData(id, history);
    
     const response = h.response({
       status: 'success',
