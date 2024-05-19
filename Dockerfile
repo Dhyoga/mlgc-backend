@@ -13,8 +13,10 @@ RUN npm install
 # Copy semua file ke dalam image
 COPY . .
 
+COPY .env .env
+
 # Expose port yang akan digunakan
 EXPOSE 8080
 
 # Jalankan aplikasi
-CMD ["node", "index.js"]
+CMD ["sh", "-c", "source .env && node index.js"]
