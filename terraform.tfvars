@@ -1,0 +1,5 @@
+project_id                    = "submissionmlgc-yogapermana"
+region                        = "asia-southeast2"
+service_name                  = "mlgc-backend"
+image_url                     = "gcr.io/submissionmlgc-yogapermana/mlgc-backend"
+google_application_credentials = "/path/to/key.json"
