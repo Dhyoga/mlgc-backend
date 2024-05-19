@@ -2,7 +2,7 @@ const predictClassification = require('../services/inferenceService');
 const crypto = require('crypto');
 const storeData = require('../services/storeData');
  
-async function postPredictHandler(request, h) {
+async function postPredict(request, h) {
   const { image } = request.payload;
   const { model } = request.server.app;
 
@@ -35,7 +35,7 @@ async function postPredictHandler(request, h) {
       "id": id,
     }
 
-    await storeData(id, history);
+    // await storeData(id, history);
    
     const response = h.response({
       status: 'success',
@@ -53,5 +53,27 @@ async function postPredictHandler(request, h) {
     return response;
   } 
 }
- 
-module.exports = postPredictHandler;
+
+const getPredict = async (request, h) => {
+  const db = new Firestore();
+  const predictionCollection = db.collection('predictions');
+  const predictionSnapshot = await predictionCollection.get();
+
+  const data = [];
+  predictionSnapshot.forEach((doc) => {
+      const history = {
+          id: doc.id,
+          history: doc.data()
+      };
+      data.push(history);
+  });
+
+  const response = h.response({
+      status: 'success',
+      data: data
+  });
+  response.code(200);
+  return response;
+}
+
+module.exports = { postPredict, getPredict };

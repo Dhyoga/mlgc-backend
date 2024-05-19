@@ -8,15 +8,17 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install dependencies
-RUN npm install
+RUN npm install --only=prod
 
 # Copy semua file ke dalam image
 COPY . .
 
-COPY .env .env
+ENV PORT='8080'
+ENV MODEL_URL='https://storage.googleapis.com/storage-model/prod/model.json'
+ENV HOST='0.0.0.0'
 
 # Expose port yang akan digunakan
 EXPOSE 8080
 
 # Jalankan aplikasi
-CMD ["sh", "-c", "source .env && node index.js"]
+CMD ["node", "index.js"]
