@@ -1,4 +1,4 @@
-const {getPredict, postPredict} = require("./handler");
+const { getPredict, postPredict } = require("./handler");
 
 const routes = [
   {
